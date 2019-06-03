@@ -6,7 +6,7 @@ TOKEN = '897931472:AAGCPoNSM_Et2G3JFxadCdwj6YSO67UB_tM'
 TOKEN_Dialogflow = 'dfcfe91ff57d46a8939abe8ec64889ac'
 # CHAT_ID = '342423423523'
 REQUEST_KWARGS = {
-    'proxy_url': 'socks5h://46.4.96.137:1080'
+    'proxy_url': 'socks5://5.135.58.123:37976'
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #    'username': 'telebot',

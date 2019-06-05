@@ -1,3 +1,5 @@
+# pip install: virtualenv
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import apiai, json
 
@@ -36,6 +38,11 @@ def textMessage(bot, update):
     else:
         bot.send_message(chat_id=update.message.chat_id, text='Я Вас не совсем понял!')
 
+#отправка файлов в чат телеграм
+# def sendPhotos(bot, update):
+#    photo=open("C:\Users\nikolskiy-d\Desktop\screenshots\1.jpg, 'rb')
+#    bot.send_photo(chat_id=update.message.chat_id, photo)
+#    bot.send_audio(chat_id, "FILEID")
 
 # Хендлеры (присваивание уведомлениям команды обработки и начать поиск обновления команд)
 start_command_handler = CommandHandler('start', startCommand)

@@ -2,10 +2,11 @@
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import apiai, json
+from bot_1_token import TOKEN, TOKEN_Dialogflow
 
 # proxy socks5
-TOKEN = '897931472:AAGCPoNSM_Et2G3JFxadCdwj6YSO67UB_tM'
-TOKEN_Dialogflow = 'dfcfe91ff57d46a8939abe8ec64889ac'
+# TOKEN =
+# TOKEN_Dialogflow =
 # CHAT_ID = '342423423523'
 REQUEST_KWARGS = {
     'proxy_url': 'socks5://5.135.58.121:37059'
@@ -39,8 +40,8 @@ def textMessage(bot, update):
         bot.send_message(chat_id=update.message.chat_id, text='Я Вас не совсем понял!')
 
 #отправка файлов в чат телеграм
-# def sendPhotos(bot, update):
-#    photo=open("C:\Users\nikolskiy-d\Desktop\screenshots\1.jpg, 'rb')
+# def sendScreen(bot, update):
+#    screen = open("C:\Users\nikolskiy-d\Desktop\screenshots\1.jpg, 'rb')
 #    bot.send_photo(chat_id=update.message.chat_id, photo)
 #    bot.send_audio(chat_id, "FILEID")
 

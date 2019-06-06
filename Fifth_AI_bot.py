@@ -9,7 +9,7 @@ from bot_1_token import TOKEN, TOKEN_Dialogflow
 # TOKEN_Dialogflow =
 # CHAT_ID = '342423423523'
 REQUEST_KWARGS = {
-    'proxy_url': 'socks5://5.135.58.121:37059'
+    'proxy_url': 'socks5://192.169.197.146:49694'
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #    'username': 'telebot',
@@ -39,16 +39,20 @@ def textMessage(bot, update):
     else:
         bot.send_message(chat_id=update.message.chat_id, text='Я Вас не совсем понял!')
 
+
 #отправка файлов в чат телеграм
-# def sendScreen(bot, update):
-#    screen = open("C:\Users\nikolskiy-d\Desktop\screenshots\1.jpg, 'rb')
-#    bot.send_photo(chat_id=update.message.chat_id, photo)
-#    bot.send_audio(chat_id, "FILEID")
+def sendScreenshot(bot, update):
+   screenshot = open("C:/Users/nikolskiy-d/Desktop/screenshots/1.jpg", 'rb')
+   bot.send_photo(chat_id = update.message.chat_id, *screenshot)
+   bot.send_photo(chat_id, "FILEID")
+
 
 # Хендлеры (присваивание уведомлениям команды обработки и начать поиск обновления команд)
+send_screenshot_handler = CommandHandler('screen', sendScreenshot)
 start_command_handler = CommandHandler('start', startCommand)
 text_message_handler = MessageHandler(Filters.text, textMessage)
 # Добавляем хендлеры в диспетчер
+dispatcher.add_handler(send_screenshot_handler)
 dispatcher.add_handler(start_command_handler)
 dispatcher.add_handler(text_message_handler)
 # Начинаем поиск обновлений

@@ -42,8 +42,8 @@ def textMessage(bot, update):
 
 #отправка файлов в чат телеграм
 def sendScreenshot(bot, update):
-   screenshot = open("C:/Users/nikolskiy-d/Desktop/screenshots/1.jpg", 'rb')
-   bot.send_photo(chat_id = update.message.chat_id, *screenshot)
+   photo = open("C:/Users/nikolskiy-d/Desktop/screenshots/1.jpg", 'rb')
+   bot.send_photo(chat_id, photo)             # or chat_id = update.message.chat_id
    bot.send_photo(chat_id, "FILEID")
 
 

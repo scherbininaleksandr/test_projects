@@ -1,15 +1,17 @@
-# pip install: virtualenv
+# pip install: virtualenv, requests
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-import apiai, json
-from bot_1_token import TOKEN, TOKEN_Dialogflow
+import apiai, json, requests
+from bot_1_token import TOKEN, TOKEN_Dialogflow, TOKEN_QIWI, LOGIN_QIWI
 
 # proxy socks5
 # TOKEN =
 # TOKEN_Dialogflow =
+#TOKEN_QIWI =
+#LOGIN_QIWI =
 # CHAT_ID = '342423423523'
 REQUEST_KWARGS = {
-    'proxy_url': 'socks5://192.169.197.146:49694'
+    'proxy_url': 'socks5://157.230.101.76:1080'
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #    'username': 'telebot',
@@ -46,13 +48,23 @@ def sendScreenshot(bot, update):
    bot.send_photo(chat_id, photo)             # or chat_id = update.message.chat_id
    bot.send_photo(chat_id, "FILEID")
 
+#запрос баланса киви
+def sendBalance (bot, update):
+    s = requests.Session()
+    s.headers['autorization'] = 'Bearer' + TOKEN_QIWI
+    parameters = {'rows': '10'}
+    h = s.get('https://edge.qiwi.com/funding-sources/v2/persons/'+LOGIN_QIWI+'/accounts/', params = parameters)
+    response =json.loads(h.text)
+    bot.send_message(chat_id=update.message.chat_id, text=response)
 
 # Хендлеры (присваивание уведомлениям команды обработки и начать поиск обновления команд)
 send_screenshot_handler = CommandHandler('screen', sendScreenshot)
+send_balance_handler = CommandHandler('balance', sendBalance)
 start_command_handler = CommandHandler('start', startCommand)
 text_message_handler = MessageHandler(Filters.text, textMessage)
 # Добавляем хендлеры в диспетчер
 dispatcher.add_handler(send_screenshot_handler)
+dispatcher.add_handler(send_balance_handler)
 dispatcher.add_handler(start_command_handler)
 dispatcher.add_handler(text_message_handler)
 # Начинаем поиск обновлений

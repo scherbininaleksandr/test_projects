@@ -48,7 +48,7 @@ def sendScreenshot(bot, update):
    bot.send_photo(chat_id, photo)             # or chat_id = update.message.chat_id
    bot.send_photo(chat_id, "FILEID")
 
-#запрос баланса киви
+#запрос баланса киви (ошибка авторизации)
 def sendBalance (bot, update):
     s = requests.Session()
     s.headers['autorization'] = 'Bearer' + TOKEN_QIWI

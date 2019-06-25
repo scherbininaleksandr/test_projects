@@ -2,7 +2,7 @@
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import apiai, json, requests
-from bot_1_token import TOKEN, TOKEN_Dialogflow, TOKEN_QIWI, LOGIN_QIWI
+from bot_1_token import TOKEN, TOKEN_Dialogflow, TOKEN_QIWI, LOGIN_QIWI, PERSONID_QIWI
 
 # proxy socks5
 # TOKEN =
@@ -48,14 +48,16 @@ def sendScreenshot(bot, update):
    bot.send_photo(chat_id, photo)             # or chat_id = update.message.chat_id
    bot.send_photo(chat_id, "FILEID")
 
+
 #запрос баланса киви (ошибка авторизации)
 def sendBalance (bot, update):
     s = requests.Session()
-    s.headers['autorization'] = 'Bearer' + TOKEN_QIWI
+    s.headers['Authorization'] = 'Bearer' + TOKEN_QIWI
     parameters = {'rows': '10'}
-    h = s.get('https://edge.qiwi.com/funding-sources/v2/persons/'+LOGIN_QIWI+'/accounts/', params = parameters)
+    h = s.get('https://edge.qiwi.com/funding-sources/v2/persons/'+PERSONID_QIWI+'/accounts/', params = parameters)
     response =json.loads(h.text)
     bot.send_message(chat_id=update.message.chat_id, text=response)
+
 
 # Хендлеры (присваивание уведомлениям команды обработки и начать поиск обновления команд)
 send_screenshot_handler = CommandHandler('screen', sendScreenshot)

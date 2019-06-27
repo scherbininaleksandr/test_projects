@@ -11,7 +11,7 @@ from bot_1_token import TOKEN, TOKEN_Dialogflow, TOKEN_QIWI, LOGIN_QIWI, PERSONI
 #LOGIN_QIWI =
 # CHAT_ID = '342423423523'
 REQUEST_KWARGS = {
-    'proxy_url': 'socks5://157.230.101.76:1080'
+    'proxy_url': 'socks5://146.145.199.98:8080'
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #    'username': 'telebot',
@@ -55,7 +55,7 @@ def sendBalance (bot, update):
     s.headers['Authorization'] = 'Bearer' + TOKEN_QIWI
     parameters = {'rows': '10'}
     h = s.get('https://edge.qiwi.com/funding-sources/v2/persons/'+PERSONID_QIWI+'/accounts/', params = parameters)
-    response =json.loads(h.text)
+    response = json.loads(h.text)
     bot.send_message(chat_id=update.message.chat_id, text=response)
 
 

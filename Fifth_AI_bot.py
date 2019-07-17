@@ -12,7 +12,7 @@ from bot_1_token import TOKEN, TOKEN_Dialogflow, TOKEN_QIWI, PERSON_ID_QIWI
 #LOGIN_QIWI =
 # CHAT_ID = '342423423523'
 REQUEST_KWARGS = {
-    'proxy_url': 'socks5://176.9.119.170:1080'
+    'proxy_url': 'socks5://207.97.174.134:1080'
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #    'username': 'telebot',
@@ -21,7 +21,7 @@ REQUEST_KWARGS = {
 }
 
 
-updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS, use_context=True)  # Токен API к Telegram
+updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS)  # Токен API к Telegram
 dispatcher = updater.dispatcher
 
 
